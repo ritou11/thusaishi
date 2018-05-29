@@ -1,0 +1,19 @@
+{
+     "button":[
+        {	
+          "type":"view",
+          "name":"清华主页",
+          "url":"http://www.tsinghua.edu.cn/publish/thu2018/index.html"
+        },
+        {	
+          "type":"click",
+          "name":"创意大赛",
+          "key":"创意大赛"
+        },
+        {	
+          "type":"click",
+          "name":"赛事列表",
+          "key":"赛事"
+        }
+     ]
+}
