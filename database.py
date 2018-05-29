@@ -25,7 +25,7 @@ def data2html(ct):
 <head><script>
  var phoneWidth = parseInt(window.screen.width);
  var phoneHeight = parseInt(window.screen.height);
- var phoneScale = phoneWidth/250;//除以的值按手机的物理分辨率
+ var phoneScale = phoneWidth/450;//除以的值按手机的物理分辨率
  var ua = navigator.userAgent;
  if (/Android (\d+\.\d+)/.test(ua)) {
  var version = parseFloat(RegExp.$1);
@@ -40,7 +40,7 @@ def data2html(ct):
  } else {
  document.write('<meta name="viewport" content="width=device-width, initial-scale='+phoneScale+',minimum-scale='+phoneScale+',maximum-scale ='+phoneScale +',user-scalable=no,">');
  }
-</script></head>'''+'''     
+</script>'''+'''<title>{h1}</title></head> 
     <h1 align="left" style="text-align:left;">
         {h1}
     </h1>      
