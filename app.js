@@ -17,8 +17,9 @@ app.post('/',function(req,res){
 
 app.get('/menu',function(req,res){//强制刷新菜单接口
     if(req.query.refresh==='root'){
-        res.send('Success!')
         wechatApp.setMenu();
+        wechatApp.getAccessToken();
+        res.send('Success!')
     }  
 });
 

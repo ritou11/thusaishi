@@ -10,7 +10,7 @@ accessTokenJson = require('./access_token'), //引入本地存储的 access_toke
  parseString = require('xml2js').parseString,//引入xml2js包
          msg = require('./msg'),//引入消息处理模块
 CryptoGraphy = require('./cryptoGraphy'), //微信消息加解密模块
-rh=require('./path.js'),
+rh=require('./path'),
 root=rh.root,
 saishi_list=require(root+'contest_list.json'),
 host=rh.host,
@@ -35,6 +35,7 @@ var WeChat = function(config){
     //设置 WeChat 对象属性 apiURL
     this.apiURL = config.apiURL;
 
+    this.more={};//用于处理分块消息
     /**
      * 用于处理 https Get请求方法
      * @param {String} url 请求地址 
@@ -223,15 +224,30 @@ WeChat.prototype.handleMsg = function(req,res){
                      //判断消息类型为 文本消息
                     if(result.MsgType.toLowerCase() === "text"){
                         //根据消息内容返回消息信息
-                        reportMsg=that.getReply(fromUser,toUser,result.Content,res);
+                        if(result.Content==='more'){
+                            if(that.more[fromUser]){
+                                reportMsg=that.more[fromUser]
+                            }else{
+                                reportMsg=msg.txtMsg(fromUser,toUser,'没有更多了[Concerned]')
+                            }
+                        }else{
+                            reportMsg = that.getReply(fromUser,toUser,result.Content);
+                        }
                     }
                 }
-                //判断消息加解密方式，如果未加密则使用明文，对明文消息进行加密
+                if(typeof reportMsg==='object'){//判断是单条消息的string还是多条消息array
+                    if(reportMsg.length>1){
+                        that.more[fromUser]=reportMsg.slice(1);
+                        reportMsg=reportMsg[0]+'\n.\n.\n.\n查看更多请输入 more';
+                    }else{
+                        reportMsg=reportMsg[0];
+                        that.more[fromUser]=undefined;
+                    }
+                    reportMsg=msg.txtMsg(fromUser,toUser,reportMsg);
+                }
                 reportMsg = req.query.encrypt_type == 'aes' ? cryptoGraphy.encryptMsg(reportMsg) : reportMsg ;
-                //返回给微信服务器
-                console.log('-Replied.');
                 res.send(reportMsg);
-
+                console.log('-Replied.');
             }else{
                 //打印错误
                 console.log(err);
@@ -246,7 +262,8 @@ WeChat.prototype.getReply=function(fromUser,toUser,content,res=undefined){
     for(var i=1;i<=saishi_list.length;i++){
         if(content==='sh'+i){
             reply=[
-                {Title:saishi_list[content]+" ",Description:"赛事详情",PicUrl:"https://cloud.tsinghua.edu.cn/f/dc712a0588344a879de9/?dl=1",Url:host+'saishi?no='+i}
+                {Title:saishi_list[content]+" ",Description:"赛事详情",PicUrl:"https://cloud.tsinghua.edu.cn/f/dc712a0588344a879de9/?dl=1",
+                Url:host+'saishi?no='+i}
             ];
             replied=true;
         }
@@ -264,6 +281,20 @@ WeChat.prototype.getReply=function(fromUser,toUser,content,res=undefined){
                         Url:"http://news.tsinghua.edu.cn/publish/thunews/10303/2018/20180524110451627595360/20180524110451627595360_.html?from=singlemessage&isappinstalled=0"}
                 ];
             break;
+            case '挑战杯':
+                reply=[
+                    {Title:"挑战杯终审",Description:"",PicUrl:"https://mmbiz.qpic.cn/mmbiz_jpg/SVtYAMekLSjQffKSSfh8mkDvOpRatgZQGzDqd9mZRF7M3TmAjlSkjNxTEBxEgf1bYgibNWA8vwEqicQs6aia60VYg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1",
+                        Url:"https://mp.weixin.qq.com/s/YKuQFReLxmhm-DpBlRKxKQ"},
+                    {Title:"挑战杯启动推送",Description:"",
+                        Url:"https://mp.weixin.qq.com/s/dur3o8gi67vmQBPWsMgXpw"}                        
+                ];
+            break;
+            case '加入校科协':
+                reply=[
+                    {Title:"—— Come Join Us ——",Description:"",PicUrl:"https://mmbiz.qpic.cn/mmbiz_jpg/SVtYAMekLSiajbmliagDdhpVhFKbhag2BAmuxeZicCoiadWDohRsK8rO3we4rQiboicaZc3LScYSLQVUaMpyDl9VOFpw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1",
+                        Url:"https://mp.weixin.qq.com/s/bRoso9se2q8KpOuEIn-ZAg"}
+                ];
+            break;
             default://默认回复：滑稽*random()
                 // var defaultMsg=['[Smirk]']
                 // reportMsg = msg.txtMsg(fromUser,toUser,defaultMsg[Math.floor(Math.random()*defaultMsg.length)]);
@@ -279,7 +310,29 @@ WeChat.prototype.getReply=function(fromUser,toUser,content,res=undefined){
     if(typeof reply!=='string'){
         return msg.graphicMsg(fromUser,toUser,reply);
     }else{
-        return msg.txtMsg(fromUser,toUser,reply);
+        const max_len=800;
+        if(reply.length>max_len){
+            var arr=reply.split('\n');
+            var arr_=[],arr__=[];
+            for(var i=0;i<arr.length;i++){
+                for(var j=0;j<arr[i].length/max_len;i++){
+                    arr_.push(arr[i].slice(j*max_len,(j+1)*max_len))
+                }
+            }
+            var msg_=arr_[0];
+            for(var i=1;i<arr_.length;i++){
+                if(msg_.length+arr_[i].length<=max_len){
+                    msg_+='\n'+arr_[i];
+                }else{
+                    arr__.push(msg_);
+                    msg_=arr_[i];
+                }
+            }
+            arr__.push(msg_);
+            return arr__;
+        }else{
+            return msg.txtMsg(fromUser,toUser,reply);
+        }
     }
 }
 
