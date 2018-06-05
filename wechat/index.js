@@ -18,7 +18,7 @@ const getReply = (fromUser, toUser, content) => {
   if (m) {
     const i = parseInt(m[1], 10);
     reply = [{
-      Title: `${saishiList[content]} `, // TODO
+      Title: `${saishiList['ss' + i]} `, // TODO
       Description: '赛事详情',
       PicUrl: 'https://cloud.tsinghua.edu.cn/f/dc712a0588344a879de9/?dl=1',
       Url: `saishi?no=${i}`,
@@ -114,21 +114,25 @@ class Wechat {
     // 获取当前时间
     const currentTime = new Date().getTime();
     // 格式化请求地址
-    const url = util.format(this.apiURL.accessTokenApi, this.apiDomain, this.appID, this.appSecret);
+    const url = util.format(this.apiURL.accessTokenApi, this.appID, this.appSecret);
     // 判断 本地存储的 access_token 是否有效
     if (!accessTokenJson || accessTokenJson.access_token === '' || accessTokenJson.expires_time < currentTime) {
       const {
         data: result,
-      } = await axios.get(url);
+      } = await axios.get(url, { baseURL: this.apiDomain });
       if (!('errcode' in result)) {
-        accessTokenJson.access_token = result.access_token;
-        accessTokenJson.expires_time = new Date().getTime() + ((parseInt(result.expires_in, 10) - 200) * 1000);
+        accessTokenJson = {
+          access_token: result.access_token,
+          expires_time: new Date().getTime() + ((parseInt(result.expires_in, 10) - 200) * 1000),
+        };
         // 更新本地存储的
-        await writeFile('./access_token.json', JSON.stringify(accessTokenJson), 'utf-8');
+        // await writeFile('./access_token.json', JSON.stringify(accessTokenJson), 'utf-8');
         // 将获取后的 access_token 返回
         return accessTokenJson.access_token;
       }
-      throw result;
+      const err = new Error('Wrong');
+      err.rawResult = result;
+      throw err;
     }
     // 将本地存储的 access_token 返回
     return accessTokenJson.access_token;
@@ -169,7 +173,8 @@ class Wechat {
 
     // 监听 end 事件 用于处理接收完成的数据
 
-    let result = req.body;
+    let result = req.body.xml;
+    // console.log(result);
 
     // 判断消息加解密方式
     if (req.query.encrypt_type === 'aes') {
@@ -195,7 +200,7 @@ class Wechat {
           reportMsg = getReply(fromUser, toUser, result.EventKey);
           break;
         default:
-          reportMsg = undefined;
+          reportMsg = '';
           break;
       }
     } else if (result.MsgType.toLowerCase() === 'text') {
@@ -228,9 +233,9 @@ class Wechat {
   }
 
   async setMenu() {
-    const url = util.format(this.apiURL.createMenu, this.apiDomain, accessTokenJson.access_token);
+    const url = util.format(this.apiURL.createMenu, accessTokenJson.access_token);
     // 使用 Post 请求创建微信菜单
-    const { data } = await axios.post(url, menus);
+    const { data } = await axios({ url, method: 'post', data: menus, baseURL: this.apiDomain });
     console.log('setMenu: ', data);
   }
 }
