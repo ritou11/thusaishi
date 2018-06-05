@@ -26,5 +26,5 @@ app.get('/saishi', function(req, res) { //获取赛事详情
     res.send('Success');
 })
 
-app.listen(80);
-console.log('Server listening on 80.')
+app.listen(8000);
+console.log('Server listening on 8000......')
