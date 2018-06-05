@@ -1,0 +1,24 @@
+{
+    "button": [{
+            "name": "大型活动",
+            "sub_button": [{
+                "type": "click",
+                "name": "挑战杯",
+                "key": "挑战杯"
+            }, {
+                "type": "click",
+                "name": "创意大赛",
+                "key": "创意大赛"
+            }]
+        },
+        {
+            "type": "click",
+            "name": "赛事列表",
+            "key": "赛事"
+        }, {
+            "type": "click",
+            "name": "加入我们",
+            "key": "加入校科协"
+        }
+    ]
+}
