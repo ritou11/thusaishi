@@ -1,6 +1,8 @@
 const express = require('express');
 const wechat = require('./wechat');
 const config = require('./config');
+const bodyParser = require('body-parser');
+require('body-parser-xml')(bodyParser);
 
 const app = express();
 
@@ -11,7 +13,7 @@ app.get('/wechat-api', (req, res) => { // 微信验证请求
   wechatApp.auth(req, res);
 });
 
-app.post('/wechat-api', (req, res) => {
+app.post('/wechat-api', bodyParser.xml(), (req, res) => {
   wechatApp.handleMsg(req, res);
 });
 
