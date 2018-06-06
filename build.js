@@ -2,13 +2,17 @@ const _ = require('lodash');
 const fs = require('fs-extra');
 const path = require('path');
 const babel = require('@babel/core');
+const { MongoClient } = require('mongodb');
+
+const url = 'mongodb://localhost:27017';
+const dbName = 'contests';
 
 const compileFile = async (tmpl, file, data) => {
   const res = tmpl(data);
   await fs.writeFile(path.join(__dirname, `./dist/${file}.html`), res);
 };
 
-const run = async () => {
+const run = async (col) => {
   const tmplString = await fs.readFile(path.join(__dirname, './src/index.html'), 'utf-8');
   const tmpl = _.template(tmplString, {
     imports: {
@@ -35,16 +39,20 @@ const run = async () => {
     path.join(__dirname, './dist/assets/'),
   );
 
-  await compileFile(tmpl, 'xxx', {
-    data2: 'yoooooo!',
-    da: {
-      ta1: 'haha hah<script>alert(1);</script>asd&&amp^^adf',
-    },
-  });
+  col.find().sort([['no', 1]]).forEach(async (doc) => {
+    await compileFile(tmpl, `saishi${doc.no}`, doc);
+  }, (err) => { if (err) console.error(err); });
 };
 
-run().then(() => {
-  console.log('Done');
-}).catch((err) => {
-  console.error(err);
+MongoClient.connect(url, (err, client) => {
+  console.log('Connected successfully to server');
+  const db = client.db(dbName);
+  const col = db.collection('users');
+  run(col).then(() => {
+    console.log('Done');
+    client.close();
+  }).catch((e) => {
+    console.error(e);
+    client.close();
+  });
 });
