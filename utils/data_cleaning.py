@@ -85,12 +85,12 @@ for i in filelist:
   if re.match(r"\w+.xlsx", i):
     file_process(i, data_list)
 
-fo = open("../contest_data.json", "w", encoding="utf-8")
+fo = open("contest_data.json", "w", encoding="utf-8")
 sys.stdout = fo
 print(data_list)
 fo.close()
 
-fo = open("../print_order.json", "w", encoding="utf-8")
+fo = open("print_order.json", "w", encoding="utf-8")
 sys.stdout = fo
 print(OrderedDict(empty_list[0]))
 fo.close
