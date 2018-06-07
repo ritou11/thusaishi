@@ -1,6 +1,8 @@
 # Artifact
-node_modules
+node_modules/
+dist/
 dump.json
+secret.json
 
 # Cruft
 *~

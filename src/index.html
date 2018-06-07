@@ -155,11 +155,11 @@
 
                 <div class="col-lg-6 col-md-6 box wow fadeInLeft">
                   <h4 class="title">赛事流程</h4>
-                  <%- _.forEach(赛事白描.赛事流程, (val, key) => { %><h5 class="title"><%- key %></h5><p class="description"><%- val %></p><% }); %>
+                  <% _.forEach(赛事白描.赛事流程, (val, key) => { %><h5 class="title"><%- key %></h5><p class="description"><%- val === ""? "无":val %></p><% }); %>
                 </div>
                 <div class="col-lg-6 col-md-6 box wow fadeInRight">
-                  <h4 class="title">年级限制</h4>
-                  <p class="description"><%- 赛事定位.参赛要求.年级限制 %></p>
+                  <h4 class="title">报名方法</h4>
+                  <% _.forEach(赛事白描.报名方法, (val, key) => { %><h5 class="title"><%- key %></h5><p class="description"><%- val === ""? "无":val %></p><% }); %>
                 </div>
                 <div class="col-lg-6 col-md-6 box wow fadeInLeft">
                   <h4 class="title">课程要求</h4>
