@@ -20,7 +20,7 @@ const getReply = (fromUser, toUser, content) => {
     reply = [{
       Title: `${saishiList.data['ss' + i]} `, // TODO
       Description: '赛事详情',
-      PicUrl: 'https://cloud.tsinghua.edu.cn/f/dc712a0588344a879de9/?dl=1',
+      PicUrl: 'http://thusaishi.nogeek.cn/assets/kx.png',
       Url: `http://thusaishi.nogeek.cn/saishi${i}.html`,
     }];
   } else {
@@ -32,13 +32,14 @@ const getReply = (fromUser, toUser, content) => {
         reply = [{
           Title: '创意大赛',
           Description: '',
-          PicUrl: 'https://cloud.tsinghua.edu.cn/f/1415ad6a77f04ff295c9/?dl=1',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/junction.jpg',
           Url: 'https://mp.weixin.qq.com/s/twhKqjK_aBDyuxB9nmX3IA',
         },
         {
           Title: '新闻稿',
           Description: '',
-          Url: 'http://news.tsinghua.edu.cn/publish/thunews/10303/2018/20180524110451627595360/20180524110451627595360_.html?from=singlemessage&isappinstalled=0',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/small.png',
+          Url: 'http://news.tsinghua.edu.cn/publish/thunews/10303/2018/20180524110451627595360/20180524110451627595360_.html',
         },
         ];
         break;
@@ -46,12 +47,13 @@ const getReply = (fromUser, toUser, content) => {
         reply = [{
           Title: '挑战杯终审',
           Description: '',
-          PicUrl: 'https://mmbiz.qpic.cn/mmbiz_jpg/SVtYAMekLSjQffKSSfh8mkDvOpRatgZQGzDqd9mZRF7M3TmAjlSkjNxTEBxEgf1bYgibNWA8vwEqicQs6aia60VYg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/tzb.png',
           Url: 'https://mp.weixin.qq.com/s/YKuQFReLxmhm-DpBlRKxKQ',
         },
         {
           Title: '挑战杯启动推送',
           Description: '',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/small.png',
           Url: 'https://mp.weixin.qq.com/s/dur3o8gi67vmQBPWsMgXpw',
         },
         ];
@@ -60,7 +62,7 @@ const getReply = (fromUser, toUser, content) => {
         reply = [{
           Title: '—— Come Join Us ——',
           Description: '',
-          PicUrl: 'https://mmbiz.qpic.cn/mmbiz_jpg/SVtYAMekLSiajbmliagDdhpVhFKbhag2BAmuxeZicCoiadWDohRsK8rO3we4rQiboicaZc3LScYSLQVUaMpyDl9VOFpw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/zx.png',
           Url: 'https://mp.weixin.qq.com/s/bRoso9se2q8KpOuEIn-ZAg',
         }];
         break;
