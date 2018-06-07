@@ -12,7 +12,7 @@
     <link href="https://cdn.bootcss.com/paper-css/0.4.1/paper.min.css" rel="stylesheet">
     <link rel="stylesheet" as="style" href="assets/style.css">
 
-    <title>xxxBallot</title>
+    <title><%- name %></title>
 
   </head>
   <body>
@@ -40,10 +40,10 @@
 
         <nav id="nav-menu-container">
           <ul class="nav-menu">
-            <li class="menu-active"><a href="#intro">xxx</a></li>
-            <li><a href="#features">xxx</a></li>
-            <li><a href="#faq">xxx</a></li>
-            <li><a href="/app/login">xxx</a></li>
+            <li class="menu-active"><a href="#aim">赛事定位</a></li>
+            <li><a href="#baimiao">赛事白描</a></li>
+            <li><a href="#gouyao">赛事勾要</a></li>
+            <li><a href="#history">赛事历史</a></li>
           </ul>
         </nav><!-- #nav-menu-container -->
       </div>
@@ -55,10 +55,19 @@
     <section id="intro">
 
       <div class="intro-text">
-        <h2>xxx</h2>
-        <p><%- 赛事定位.赛事关键词.赛事内容关键词1 %></p>
-        <a href="#features" class="btn-get-started scrollto">xxx</a>
-        <a href="/app/login" class="btn-get-started scrollto">xxx</a>
+        <h2><%- 赛事定位.赛事名称.赛事全称 %></h2>
+        <p><%- 赛事定位.赛事目的.赛事目的 %></p>
+        <p><%- 赛事定位.赛事目的.对同学们说的话 %></p>
+        <table>
+          <tr>
+            <td><a href="#aim" class="btn-get-started scrollto">赛事定位</a></td>
+            <td><a href="#baimiao" class="btn-get-started scrollto">赛事白描</a></td>
+          </tr>
+          <tr>
+            <td><a href="#gouyao" class="btn-get-started scrollto">赛事勾要</a></td>
+            <td><a href="#history" class="btn-get-started scrollto">赛事历史</a></td>
+          </tr>
+        </table>
       </div>
 
     </section><!-- #intro -->
@@ -66,16 +75,16 @@
     <main id="main">
 
       <!--==========================
-        Features Section
+        赛事定位
       ============================-->
-      <section id="features">
+      <section id="aim">
         <div class="container">
 
           <div class="row">
 
             <div class="col-lg-12">
               <div class="section-header wow fadeIn" data-wow-duration="1s">
-                <h3 class="section-title">xxx</h3>
+                <h3 class="section-title">赛事定位</h3>
                 <span class="section-divider"></span>
               </div>
             </div>
@@ -85,20 +94,80 @@
               <div class="row">
 
                 <div class="col-lg-6 col-md-6 box wow fadeInLeft">
-                  <h4 class="title">xxx</h4>
-                  <p class="description">xxx</p>
+                  <h4 class="title">基本要求</h4>
+                  <p class="description"><%- 赛事定位.参赛要求.基本要求 %></p>
                 </div>
                 <div class="col-lg-6 col-md-6 box wow fadeInRight">
-                  <h4 class="title">xxx</h4>
-                  <p class="description">xxx</p>
+                  <h4 class="title">年级限制</h4>
+                  <p class="description"><%- 赛事定位.参赛要求.年级限制 %></p>
                 </div>
                 <div class="col-lg-6 col-md-6 box wow fadeInLeft">
-                  <h4 class="title">xxx</h4>
-                  <p class="description">xxx</p>
+                  <h4 class="title">课程要求</h4>
+                  <p class="description"><%- 赛事定位.参赛要求.课程要求 %></p>
                 </div>
                 <div class="col-lg-6 col-md-6 box wow fadeInRight">
-                  <h4 class="title">xxx</h4>
-                  <p class="description">xxx</p>
+                  <h4 class="title">参赛形式</h4>
+                  <p class="description"><%- 赛事定位.赛事关键词.赛事参赛人形式 + ';' +  赛事定位.赛事关键词.赛事参赛人形式细化说明%></p>
+                </div>
+
+              </div>
+              <!--
+              <div class="row">
+                  <div class="col-lg-6 col-md-6 box wow fadeInUp">
+                    <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">专业分组</h4></a>
+                    <div class="collapse">
+                      <p class="description"><%- 赛事定位.赛事分组.专业分组 %></p>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 box wow fadeInUp" data-wow-delay="0.1s">
+                    <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">年级分组</h4></a>
+                    <div class="collapse">
+                      <p class="description"><%- 赛事定位.赛事分组.年级分组 %></p>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            -->
+          </div>
+
+        </div>
+
+      </section><!-- #features -->
+
+      <!--==========================
+        赛事白描
+      ============================-->
+      <section id="baimiao" class="section-bg">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-lg-12">
+              <div class="section-header wow fadeIn" data-wow-duration="1s">
+                <h3 class="section-title">赛事白描</h3>
+                <span class="section-divider"></span>
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+
+              <div class="row">
+
+                <div class="col-lg-6 col-md-6 box wow fadeInLeft">
+                  <h4 class="title">赛事流程</h4>
+                  <%- _.forEach(赛事白描.赛事流程, (val, key) => { %><h5 class="title"><%- key %></h5><p class="description"><%- val %></p><% }); %>
+                </div>
+                <div class="col-lg-6 col-md-6 box wow fadeInRight">
+                  <h4 class="title">年级限制</h4>
+                  <p class="description"><%- 赛事定位.参赛要求.年级限制 %></p>
+                </div>
+                <div class="col-lg-6 col-md-6 box wow fadeInLeft">
+                  <h4 class="title">课程要求</h4>
+                  <p class="description"><%- 赛事定位.参赛要求.课程要求 %></p>
+                </div>
+                <div class="col-lg-6 col-md-6 box wow fadeInRight">
+                  <h4 class="title">参赛形式</h4>
+                  <p class="description"><%- 赛事定位.赛事关键词.赛事参赛人形式 + ';' +  赛事定位.赛事关键词.赛事参赛人形式细化说明%></p>
                 </div>
 
               </div>
@@ -112,70 +181,55 @@
       </section><!-- #features -->
 
       <!--==========================
-        Call To Action Section
+        赛事勾要
       ============================-->
-      <section id="call-to-action">
+      <section id="gouyao">
         <div class="container">
-          <div class="row">
-            <div class="col-lg-9 text-center text-lg-left">
-              <h3 class="cta-title">xxx</h3>
-              <p class="cta-text">xxx</p>
-            </div>
-            <div class="col-lg-3 cta-btn-container text-center">
-              <a class="cta-btn align-middle" href="app/login">xxx</a>
-            </div>
-          </div>
-
-        </div>
-      </section><!-- #call-to-action -->
-
-      <!--==========================
-        More Features Section
-      ============================-->
-      <section id="more-features" class="section-bg">
-        <div class="container">
-
-          <div class="section-header">
-            <h3 class="section-title">xxx</h3>
-            <span class="section-divider"></span>
-            <p class="section-description">xxx</p>
-          </div>
 
           <div class="row">
 
-            <div class="col-lg-6">
-              <div class="box wow fadeInLeft">
-                <h4 class="title">xxx</h4>
-                <p class="description">xxx</p>
+            <div class="col-lg-12">
+              <div class="section-header wow fadeIn" data-wow-duration="1s">
+                <h3 class="section-title">赛事定位</h3>
+                <span class="section-divider"></span>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="box wow fadeInRight">
-                <h4 class="title">xxx</h4>
-                <p class="description">xxx</p>
+
+            <div class="col-lg-12">
+
+              <div class="row">
+
+                <div class="col-lg-6 col-md-6 box wow fadeInLeft">
+                  <h4 class="title">基本要求</h4>
+                  <p class="description"><%- 赛事定位.参赛要求.基本要求 %></p>
+                </div>
+                <div class="col-lg-6 col-md-6 box wow fadeInRight">
+                  <h4 class="title">年级限制</h4>
+                  <p class="description"><%- 赛事定位.参赛要求.年级限制 %></p>
+                </div>
+                <div class="col-lg-6 col-md-6 box wow fadeInLeft">
+                  <h4 class="title">课程要求</h4>
+                  <p class="description"><%- 赛事定位.参赛要求.课程要求 %></p>
+                </div>
+                <div class="col-lg-6 col-md-6 box wow fadeInRight">
+                  <h4 class="title">参赛形式</h4>
+                  <p class="description"><%- 赛事定位.赛事关键词.赛事参赛人形式 + ';' +  赛事定位.赛事关键词.赛事参赛人形式细化说明%></p>
+                </div>
+
               </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="box wow fadeInLeft">
-                <h4 class="title">xxx</h4>
-                <p class="description">xxx</p>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="box wow fadeInRight">
-                <h4 class="title">xxx</h4>
-                <p class="description">xxx</p>
-              </div>
+
             </div>
 
           </div>
+
         </div>
-      </section><!-- #more-features -->
+
+      </section><!-- #features -->
 
       <!--==========================
-        Frequently Asked Questions Section
+        赛事历史
       ============================-->
-      <section id="faq">
+      <section id="history" class="section-bg">
         <div class="container">
 
           <div class="section-header">
@@ -231,12 +285,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <nav class="footer-links text-center pt-2 pt-lg-0">
-              <a class="scrollto" href="#intro">xxx</a>
-              <a class="scrollto" href="#features">xxx</a>
-              <a class="scrollto" href="#faq">xxx</a>
-              <a href="/app/login">xxx</a>
-            </nav>
+            清华大学学生科协赛事部@2018
           </div>
         </div>
       </div>
