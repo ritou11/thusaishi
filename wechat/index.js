@@ -18,10 +18,10 @@ const getReply = (fromUser, toUser, content) => {
   if (m) {
     const i = parseInt(m[1], 10);
     reply = [{
-      Title: `${saishiList['ss' + i]} `, // TODO
+      Title: `${saishiList.data['ss' + i]} `, // TODO
       Description: '赛事详情',
       PicUrl: 'https://cloud.tsinghua.edu.cn/f/dc712a0588344a879de9/?dl=1',
-      Url: `saishi?no=${i}`,
+      Url: `http://thusaishi.nogeek.cn/saishi${i}.html`,
     }];
   } else {
     switch (content.trim()) {
