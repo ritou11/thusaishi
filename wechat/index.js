@@ -1,13 +1,13 @@
 const crypto = require('crypto');
 const util = require('util');
-const fs = require('fs');
+// const fs = require('fs');
 const axios = require('axios');
 const menus = require('./menus'); // 引入微信菜单配置
 const msg = require('./msg'); // 引入消息处理模块
 const CryptoGraphy = require('./cryptoGraphy'); // 微信消息加解密模块
 const saishiList = require('../contest_list.json');
 
-const writeFile = util.promisify(fs.writeFile);
+// const writeFile = util.promisify(fs.writeFile);
 let accessTokenJson;
 
 const getTime = () => new Date().toISOString();
@@ -18,14 +18,14 @@ const getReply = (fromUser, toUser, content) => {
   if (m) {
     const i = parseInt(m[1], 10);
     reply = [{
-      Title: `${saishiList.data['ss' + i]} `, // TODO
+      Title: `${saishiList.data[`ss${i}`]} `, // TODO
       Description: '赛事详情',
       PicUrl: 'http://thusaishi.nogeek.cn/assets/kx.png',
       Url: `http://thusaishi.nogeek.cn/saishi${i}.html`,
     }];
   } else {
     switch (content.trim()) {
-      case '赛事':
+      case '赛事': case '赛事列表':
         reply = `赛事列表：(回复对应代码查看详情)\n${saishiList.list}`; // TODO
         break;
       case '创意大赛':
@@ -57,7 +57,7 @@ const getReply = (fromUser, toUser, content) => {
           Url: 'https://mp.weixin.qq.com/s/urwBTJmWo_dvaSwqij_k6Q',
         },
         ];
-      break;
+        break;
       case '三创博览会':
         reply = [{
           Title: '邀请函 | 三创博览会游玩指南',
@@ -65,7 +65,7 @@ const getReply = (fromUser, toUser, content) => {
           PicUrl: 'http://thusaishi.nogeek.cn/assets/scblh.png',
           Url: 'https://mp.weixin.qq.com/s/I1aDAHSpW0bitxyn4XtIWg',
         }];
-      break;
+        break;
       case '星火论坛':
         reply = [{
           Title: '这个九月，Google大中华区总裁与你畅谈AI',
@@ -86,7 +86,7 @@ const getReply = (fromUser, toUser, content) => {
           Url: 'https://mp.weixin.qq.com/s/KwDEm64bHMjq2nkENDfSww',
         },
         ];
-      break;
+        break;
       case '燎原实践':
         reply = [{
           Title: '燎原实践 | 腾讯怎么知道我喜欢什么？',
@@ -101,16 +101,16 @@ const getReply = (fromUser, toUser, content) => {
           Url: 'https://mp.weixin.qq.com/s/8zt2HOfbm-w-VZpkf209ig',
         },
         ];
-      break;
+        break;
       case '学生学报':
         reply = [{
           Title: '征稿启事 | 更好的学报，期待投稿的你',
           Description: '',
           PicUrl: 'http://thusaishi.nogeek.cn/assets/xsxb.png',
           Url: 'https://mp.weixin.qq.com/s/Pp_oHLh6uBkpsGRefQmxug',
-        }
+        },
         ];
-      break;
+        break;
       case '挑战杯':
         reply = [{
           Title: 'i 挑战 | 挑战杯校级终审 特奖获取指南',
@@ -134,10 +134,28 @@ const getReply = (fromUser, toUser, content) => {
           Url: 'https://mp.weixin.qq.com/s/bRoso9se2q8KpOuEIn-ZAg',
         }];
         break;
+      case '[Smirk]': case '[OK]': case '[Whimper]': case '[可怜]':
+        reply = '[Smirk]'.repeat((Math.random() * 6) + 1);
+        break;
+      case '[Trick]': case '[坏笑]':
+        reply = '[Trick]'.repeat((Math.random() * 10) + 1);
+        break;
+      case '我要彩蛋[Smirk]':
+        reply = '满足你！\nhttp://thusaishi.nogeek.cn/assets/cd-wxk.png';
+        break;
+      case '36届科协':
+        reply = 'http://thusaishi.nogeek.cn/assets/cd-36kx.png';
+        break;
+      case '36届主席团':
+        reply = 'http://thusaishi.nogeek.cn/assets/cd-36zx.png';
+        break;
+      case '36届主席团自拍':
+        reply = 'http://thusaishi.nogeek.cn/assets/cd-36zxzp.png';
+        break;
       default: // 默认回复：滑稽*random()
         // var defaultMsg=['[Smirk]']
         // reportMsg = msg.txtMsg(fromUser,toUser,defaultMsg[Math.floor(Math.random()*defaultMsg.length)]);
-        reply = '[Smirk]'.repeat((Math.random() * 6) + 1);
+        reply = '科小协现在还听不懂你在说什么[Shy]\n感谢关注清华大学学生科协，我们会继续加油哒~';
         break;
     }
   }
