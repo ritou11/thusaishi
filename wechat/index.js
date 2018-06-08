@@ -30,28 +30,96 @@ const getReply = (fromUser, toUser, content) => {
         break;
       case '创意大赛':
         reply = [{
-          Title: '创意大赛',
+          Title: '“跨国情缘” | 第七届创意大赛为中芬大学生搭建创意交流桥梁',
           Description: '',
           PicUrl: 'http://thusaishi.nogeek.cn/assets/junction.jpg',
           Url: 'https://mp.weixin.qq.com/s/twhKqjK_aBDyuxB9nmX3IA',
         },
         {
-          Title: '新闻稿',
+          Title: '清华大学举行第七届创意大赛 | 中芬学生展开创意比拼',
           Description: '',
           PicUrl: 'http://thusaishi.nogeek.cn/assets/small.png',
           Url: 'http://news.tsinghua.edu.cn/publish/thunews/10303/2018/20180524110451627595360/20180524110451627595360_.html',
         },
         ];
         break;
+      case '新生专场':
+        reply = [{
+          Title: '创意大赛 | 新生专场，期待你的创意梦想！',
+          Description: '',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/xs.png',
+          Url: 'https://mp.weixin.qq.com/s/ouMrv9ufbwVUPJTibdq9Fg',
+        },
+        {
+          Title: '创无止境 | 第七届创意大赛新生专场圆满落幕',
+          Description: '',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/small.png',
+          Url: 'https://mp.weixin.qq.com/s/urwBTJmWo_dvaSwqij_k6Q',
+        },
+        ];
+      break;
+      case '三创博览会':
+        reply = [{
+          Title: '邀请函 | 三创博览会游玩指南',
+          Description: '',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/scblh.png',
+          Url: 'https://mp.weixin.qq.com/s/I1aDAHSpW0bitxyn4XtIWg',
+        }];
+      break;
+      case '星火论坛':
+        reply = [{
+          Title: '这个九月，Google大中华区总裁与你畅谈AI',
+          Description: '',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/xhlt.png',
+          Url: 'https://mp.weixin.qq.com/s/UABbQH0IaEaVRN8Kez1LHg',
+        },
+        {
+          Title: '星火前瞻 | 与霍金弟子加尔法德探索宇宙与未来——第143期星火论坛',
+          Description: '',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/small.png',
+          Url: 'https://mp.weixin.qq.com/s/nIlSql5RJtN7HFEjYqE9EA',
+        },
+        {
+          Title: '星火在即 | 畅谈分子机器——与诺贝尔化学奖得主面对面',
+          Description: '',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/small.png',
+          Url: 'https://mp.weixin.qq.com/s/KwDEm64bHMjq2nkENDfSww',
+        },
+        ];
+      break;
+      case '燎原实践':
+        reply = [{
+          Title: '燎原实践 | 腾讯怎么知道我喜欢什么？',
+          Description: '',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/lysj.png',
+          Url: 'https://mp.weixin.qq.com/s/1DSxC2NwnLwOGHZzN0ddfg',
+        },
+        {
+          Title: '清华东门的神秘汪仔',
+          Description: '',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/small.png',
+          Url: 'https://mp.weixin.qq.com/s/8zt2HOfbm-w-VZpkf209ig',
+        },
+        ];
+      break;
+      case '学生学报':
+        reply = [{
+          Title: '征稿启事 | 更好的学报，期待投稿的你',
+          Description: '',
+          PicUrl: 'http://thusaishi.nogeek.cn/assets/xsxb.png',
+          Url: 'https://mp.weixin.qq.com/s/Pp_oHLh6uBkpsGRefQmxug',
+        }
+        ];
+      break;
       case '挑战杯':
         reply = [{
-          Title: '挑战杯终审',
+          Title: 'i 挑战 | 挑战杯校级终审 特奖获取指南',
           Description: '',
           PicUrl: 'http://thusaishi.nogeek.cn/assets/tzb.png',
           Url: 'https://mp.weixin.qq.com/s/YKuQFReLxmhm-DpBlRKxKQ',
         },
         {
-          Title: '挑战杯启动推送',
+          Title: '报名启动 | 第36届挑战杯发车啦！',
           Description: '',
           PicUrl: 'http://thusaishi.nogeek.cn/assets/small.png',
           Url: 'https://mp.weixin.qq.com/s/dur3o8gi67vmQBPWsMgXpw',
@@ -60,7 +128,7 @@ const getReply = (fromUser, toUser, content) => {
         break;
       case '加入校科协':
         reply = [{
-          Title: '—— Come Join Us ——',
+          Title: '科协招新 | 你的蛙今天去了哪里',
           Description: '',
           PicUrl: 'http://thusaishi.nogeek.cn/assets/zx.png',
           Url: 'https://mp.weixin.qq.com/s/bRoso9se2q8KpOuEIn-ZAg',

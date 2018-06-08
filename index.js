@@ -30,10 +30,10 @@ app.post('/wechat-api', bodyParser.xml({
   wechatApp.handleMsg(req, res);
 });
 
-app.get('/wechat-api/menu', (req, res) => { // 强制刷新菜单接口
-  if (req.query.refresh === 'root') {
-    wechatApp.getAccessToken();
-    wechatApp.setMenu();
+app.get('/wechat-api/menu', async (req, res) => { // 强制刷新菜单接口
+  if (req.query.refresh === config.refresh_key) {
+    await wechatApp.getAccessToken();
+    await wechatApp.setMenu();
   }
   res.send();
 });

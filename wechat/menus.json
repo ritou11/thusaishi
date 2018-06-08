@@ -9,6 +9,18 @@
         "type": "click",
         "name": "创意大赛",
         "key": "创意大赛"
+      }, {
+        "type": "click",
+        "name": "三创博览会",
+        "key": "三创博览会"
+      }, {
+        "type": "click",
+        "name": "星火论坛",
+        "key": "星火论坛"
+      }, {
+        "type": "click",
+        "name": "燎原实践",
+        "key": "燎原实践"
       }]
     },
     {
