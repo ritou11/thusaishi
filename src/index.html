@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta content="ie=edge" http-equiv="x-ua-compatible">
-    <meta name="description" content="Customizable anonymous online balloting system with ring signature authentication.">
 
-    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/superfish/1.7.9/css/superfish.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/paper-css/0.4.1/paper.min.css" rel="stylesheet">
-    <link rel="stylesheet" as="style" href="assets/style.css">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="ie=edge" http-equiv="x-ua-compatible">
+  <meta name="description" content="Customizable anonymous online balloting system with ring signature authentication.">
 
-    <title><%- name %></title>
+  <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/superfish/1.7.9/css/superfish.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/paper-css/0.4.1/paper.min.css" rel="stylesheet">
+  <link rel="stylesheet" as="style" href="assets/style.css">
 
-  </head>
-  <body>
+  <title>
+    <%= name %>
+  </title>
 
-    <svg style="position: absolute; width: 0; height: 0;">
+</head>
+
+<body>
+
+  <svg style="position: absolute; width: 0; height: 0;">
       <defs>
         <linearGradient id="gradient">
           <stop offset="0%" stop-color="#55fabe" />
@@ -26,103 +30,126 @@
       </defs>
     </svg>
 
-    <!--==========================
+  <!--==========================
       Header
     ============================-->
-    <header id="header">
-      <div class="container">
+  <header id="header">
+    <div class="container">
 
-        <div id="logo" class="pull-left">
-          <h1><a href="#intro" class="scrollto"><%- name %></a></h1>
-          <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <a href="#intro"><img src="resource/logo.png" alt="" title=""></a> -->
-        </div>
-
-        <nav id="nav-menu-container">
-          <ul class="nav-menu">
-            <li class="menu-active"><a href="#aim">赛事定位</a></li>
-            <li><a href="#baimiao">赛事白描</a></li>
-            <li><a href="#gouyao">赛事勾要</a></li>
-            <li><a href="#history">赛事历史</a></li>
-          </ul>
-        </nav><!-- #nav-menu-container -->
+      <div id="logo" class="pull-left">
+        <h1><a href="#intro" class="scrollto"><%= name %></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="resource/logo.png" alt="" title=""></a> -->
       </div>
-    </header><!-- #header -->
 
-    <!--==========================
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#aim">赛事定位</a></li>
+          <li><a href="#baimiao">赛事白描</a></li>
+          <li><a href="#gouyao">赛事勾要</a></li>
+          <li><a href="#history">赛事历史</a></li>
+        </ul>
+      </nav>
+      <!-- #nav-menu-container -->
+    </div>
+  </header>
+  <!-- #header -->
+
+  <!--==========================
       Intro Section
     ============================-->
-    <section id="intro">
+  <section id="intro">
 
-      <div class="intro-text">
-        <h2><%- 赛事定位.赛事名称.赛事全称 %></h2>
-        <p><%- 赛事定位.赛事目的.赛事目的 %></p>
-        <p><%- 赛事定位.赛事目的.对同学们说的话 %></p>
-        <table>
-          <tr>
-            <td><a href="#aim" class="btn-get-started scrollto">赛事定位</a></td>
-            <td><a href="#baimiao" class="btn-get-started scrollto">赛事白描</a></td>
-          </tr>
-          <tr>
-            <td><a href="#gouyao" class="btn-get-started scrollto">赛事勾要</a></td>
-            <td><a href="#history" class="btn-get-started scrollto">赛事历史</a></td>
-          </tr>
-        </table>
-      </div>
+    <div class="intro-text">
+      <h2><%= 赛事定位.赛事名称.赛事全称 %></h2>
+      <p style="font-size: 18px;">
+          关键词:<% let gzc=false; for(let i=1;i<=10;i++) if(赛事定位.赛事关键词['赛事内容关键词'+i]){ %>
+            <%= (gzc? ", ":"") + 赛事定位.赛事关键词['赛事内容关键词'+i] %>
+              <% gzc=true;} if(!gzc){ %>
+                <%= "无" %>
+                  <% } %>
+      </p>
+      <p>
+        <%= 赛事定位.赛事目的.赛事目的 %>
+      </p>
+      <p>
+        <%= 赛事定位.赛事目的.对同学们说的话 %>
+      </p>
+      <table>
+        <tr>
+          <td><a href="#aim" class="btn-get-started scrollto">赛事定位</a></td>
+          <td><a href="#baimiao" class="btn-get-started scrollto">赛事白描</a></td>
+        </tr>
+        <tr>
+          <td><a href="#gouyao" class="btn-get-started scrollto">赛事勾要</a></td>
+          <td><a href="#history" class="btn-get-started scrollto">赛事历史</a></td>
+        </tr>
+      </table>
+    </div>
 
-    </section><!-- #intro -->
+  </section>
+  <!-- #intro -->
 
-    <main id="main">
+  <main id="main">
 
-      <!--==========================
+    <!--==========================
         赛事定位
       ============================-->
-      <section id="aim">
-        <div class="container">
+    <section id="aim">
+      <div class="container">
 
-          <div class="row">
+        <div class="row">
 
-            <div class="col-lg-12">
-              <div class="section-header wow fadeIn" data-wow-duration="1s">
-                <h3 class="section-title">赛事定位</h3>
-                <span class="section-divider"></span>
-              </div>
+          <div class="col-lg-12">
+            <div class="section-header wow fadeIn" data-wow-duration="1s">
+              <h3 class="section-title">赛事定位</h3>
+              <span class="section-divider"></span>
+              <p class="section-description">来这里看看这个赛事适不适合你！</p>
             </div>
+          </div>
 
-            <div class="col-lg-12">
+          <div class="col-lg-12">
 
-              <div class="row">
+            <div class="row">
 
-                <div class="col-lg-6 col-md-6 box wow fadeInLeft">
-                  <h4 class="title">基本要求</h4>
-                  <p class="description"><%- 赛事定位.参赛要求.基本要求 %></p>
-                </div>
-                <div class="col-lg-6 col-md-6 box wow fadeInRight">
-                  <h4 class="title">年级限制</h4>
-                  <p class="description"><%- 赛事定位.参赛要求.年级限制 %></p>
-                </div>
-                <div class="col-lg-6 col-md-6 box wow fadeInLeft">
-                  <h4 class="title">课程要求</h4>
-                  <p class="description"><%- 赛事定位.参赛要求.课程要求 %></p>
-                </div>
-                <div class="col-lg-6 col-md-6 box wow fadeInRight">
-                  <h4 class="title">参赛形式</h4>
-                  <p class="description"><%- 赛事定位.赛事关键词.赛事参赛人形式 + ';' +  赛事定位.赛事关键词.赛事参赛人形式细化说明%></p>
-                </div>
-
+              <div class="col-lg-6 col-md-6 box wow fadeInLeft">
+                <h4 class="title">基本要求</h4>
+                <p class="description">
+                  <%= 赛事定位.参赛要求.基本要求 %>
+                </p>
               </div>
-              <!--
+              <div class="col-lg-6 col-md-6 box wow fadeInRight">
+                <h4 class="title">年级限制</h4>
+                <p class="description">
+                  <%= 赛事定位.参赛要求.年级限制 %>
+                </p>
+              </div>
+              <div class="col-lg-6 col-md-6 box wow fadeInLeft">
+                <h4 class="title">课程要求</h4>
+                <p class="description">
+                  <%= 赛事定位.参赛要求.课程要求 %>
+                </p>
+              </div>
+              <div class="col-lg-6 col-md-6 box wow fadeInRight">
+                <h4 class="title">参赛形式</h4>
+                <p class="description">
+                  <%= 赛事定位.赛事关键词.赛事参赛人形式 + ';' +  赛事定位.赛事关键词.赛事参赛人形式细化说明%>
+                </p>
+              </div>
+
+            </div>
+            <!--
               <div class="row">
                   <div class="col-lg-6 col-md-6 box wow fadeInUp">
                     <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">专业分组</h4></a>
                     <div class="collapse">
-                      <p class="description"><%- 赛事定位.赛事分组.专业分组 %></p>
+                      <p class="description"><%= 赛事定位.赛事分组.专业分组 %></p>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 box wow fadeInUp" data-wow-delay="0.1s">
                     <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">年级分组</h4></a>
                     <div class="collapse">
-                      <p class="description"><%- 赛事定位.赛事分组.年级分组 %></p>
+                      <p class="description"><%= 赛事定位.赛事分组.年级分组 %></p>
                     </div>
                   </div>
               </div>
@@ -132,175 +159,253 @@
 
         </div>
 
-      </section><!-- #features -->
-
-      <!--==========================
-        赛事白描
-      ============================-->
-      <section id="baimiao" class="section-bg">
-        <div class="container">
-
-          <div class="row">
-
-            <div class="col-lg-12">
-              <div class="section-header wow fadeIn" data-wow-duration="1s">
-                <h3 class="section-title">赛事白描</h3>
-                <span class="section-divider"></span>
-              </div>
-            </div>
-
-            <div class="col-lg-12">
-
-              <div class="row">
-
-                <div class="col-lg-6 col-md-6 box wow fadeInLeft">
-                  <h4 class="title">赛事流程</h4>
-                  <% _.forEach(赛事白描.赛事流程, (val, key) => { %><h5 class="title"><%- key %></h5><p class="description"><%- val === ""? "无":val %></p><% }); %>
-                </div>
-                <div class="col-lg-6 col-md-6 box wow fadeInRight">
-                  <h4 class="title">报名方法</h4>
-                  <% _.forEach(赛事白描.报名方法, (val, key) => { %><h5 class="title"><%- key %></h5><p class="description"><%- val === ""? "无":val %></p><% }); %>
-                </div>
-                <div class="col-lg-6 col-md-6 box wow fadeInLeft">
-                  <h4 class="title">课程要求</h4>
-                  <p class="description"><%- 赛事定位.参赛要求.课程要求 %></p>
-                </div>
-                <div class="col-lg-6 col-md-6 box wow fadeInRight">
-                  <h4 class="title">参赛形式</h4>
-                  <p class="description"><%- 赛事定位.赛事关键词.赛事参赛人形式 + ';' +  赛事定位.赛事关键词.赛事参赛人形式细化说明%></p>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section><!-- #features -->
-
-      <!--==========================
-        赛事勾要
-      ============================-->
-      <section id="gouyao">
-        <div class="container">
-
-          <div class="row">
-
-            <div class="col-lg-12">
-              <div class="section-header wow fadeIn" data-wow-duration="1s">
-                <h3 class="section-title">赛事定位</h3>
-                <span class="section-divider"></span>
-              </div>
-            </div>
-
-            <div class="col-lg-12">
-
-              <div class="row">
-
-                <div class="col-lg-6 col-md-6 box wow fadeInLeft">
-                  <h4 class="title">基本要求</h4>
-                  <p class="description"><%- 赛事定位.参赛要求.基本要求 %></p>
-                </div>
-                <div class="col-lg-6 col-md-6 box wow fadeInRight">
-                  <h4 class="title">年级限制</h4>
-                  <p class="description"><%- 赛事定位.参赛要求.年级限制 %></p>
-                </div>
-                <div class="col-lg-6 col-md-6 box wow fadeInLeft">
-                  <h4 class="title">课程要求</h4>
-                  <p class="description"><%- 赛事定位.参赛要求.课程要求 %></p>
-                </div>
-                <div class="col-lg-6 col-md-6 box wow fadeInRight">
-                  <h4 class="title">参赛形式</h4>
-                  <p class="description"><%- 赛事定位.赛事关键词.赛事参赛人形式 + ';' +  赛事定位.赛事关键词.赛事参赛人形式细化说明%></p>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section><!-- #features -->
-
-      <!--==========================
-        赛事历史
-      ============================-->
-      <section id="history" class="section-bg">
-        <div class="container">
-
-          <div class="section-header">
-            <h3 class="section-title">xxx</h3>
-            <span class="section-divider"></span>
-            <p class="section-description">xxx</p>
-          </div>
-
-          <ul id="faq-list">
-
-            <li class="wow fadeInUp">
-              <a data-toggle="collapse" class="collapsed" href="#faq1">xxx</a>
-              <div class="collapse">
-                <p>xxx</p>
-              </div>
-            </li>
-            <li class="wow fadeInUp" data-wow-delay="0.1s">
-              <a data-toggle="collapse" class="collapsed" href="#faq2">xxx</a>
-              <div class="collapse">
-                <p>xxx</p>
-              </div>
-            </li>
-            <li class="wow fadeInUp" data-wow-delay="0.2s">
-              <a data-toggle="collapse" class="collapsed" href="#faq3">xxx</a>
-              <div class="collapse">
-                <p>xxx</p>
-              </div>
-            </li>
-            <li class="wow fadeInUp" data-wow-delay="0.3s">
-              <a data-toggle="collapse" class="collapsed" href="#faq4">xxx</a>
-              <div class="collapse">
-                <p>xxx</p>
-              </div>
-            </li>
-            <li class="wow fadeInUp" data-wow-delay="0.4s">
-              <a data-toggle="collapse" class="collapsed" href="#faq5">xxx</a>
-              <div class="collapse">
-                <p>xxx</p>
-              </div>
-            </li>
-
-          </ul>
-
-        </div>
-      </section><!-- #faq -->
-
-    </main>
+    </section>
+    <!-- #aim -->
 
     <!--==========================
+        赛事白描
+      ============================-->
+    <section id="baimiao" class="section-bg">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-12">
+            <div class="section-header wow fadeIn" data-wow-duration="1s">
+              <h3 class="section-title">赛事白描</h3>
+              <span class="section-divider"></span>
+              <p class="section-description">想详尽地了解这个赛事吗？点击即可查看相关信息哦~</p>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+
+            <div class="row">
+              <div class="col-lg-6 col-md-6 box wow fadeInUp">
+                <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">赛事流程</h4></a>
+                <div class="collapse">
+                  <% _.forEach(赛事白描.赛事流程, (val, key) => { %>
+                    <h5 class="title"><%= key %></h5>
+                    <p class="description">
+                      <%= val === ""? "无":val %>
+                    </p>
+                    <% }); %>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 box wow fadeInUp">
+                <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">报名方法</h4></a>
+                <div class="collapse">
+                  <% _.forEach(赛事白描.报名方法, (val, key) => { %>
+                    <h5 class="title"><%= key %></h5>
+                    <p class="description">
+                      <%= val === ""? "无":val %>
+                    </p>
+                    <% }); %>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 box wow fadeInUp">
+                <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">评价方法</h4></a>
+                <div class="collapse">
+                  <% _.forEach(赛事白描.评价方法, (val, key) => { %>
+                    <h5 class="title"><%= key %></h5>
+                    <p class="description">
+                      <%= val === ""? "无":val %>
+                    </p>
+                    <% }); %>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 box wow fadeInUp">
+                <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">奖励方法</h4></a>
+                <div class="collapse">
+                  <% _.forEach(赛事白描.奖励方法, (val, key) => { %>
+                    <h5 class="title"><%= key %></h5>
+                    <p class="description">
+                      <%= val === ""? "无":val %>
+                    </p>
+                    <% }); %>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+    <!-- #baimiao -->
+
+    <!--==========================
+        赛事勾要
+      ============================-->
+    <section id="gouyao">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-12">
+            <div class="section-header wow fadeIn" data-wow-duration="1s">
+              <h3 class="section-title">赛事勾要</h3>
+              <span class="section-divider"></span>
+              <p class="section-description">还在犹豫要不要参赛吗？来这里了解一下！</p>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 box wow fadeInUp">
+                <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">选手培训</h4></a>
+                <div class="collapse">
+                  <% _.forEach(赛事勾要.选手培训说明, (val, key) => { %>
+                    <h5 class="title"><%= key %></h5>
+                    <p class="description">
+                      <%= val === ""? "无":val %>
+                    </p>
+                    <% }); %>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 box wow fadeInUp">
+                <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">沟通平台</h4></a>
+                <div class="collapse">
+                  <% _.forEach(赛事勾要.赛事沟通平台, (val, key) => { %>
+                    <h5 class="title"><%= key %></h5>
+                    <p class="description">
+                      <%= val === ""? "无":val %>
+                    </p>
+                    <% }); %>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 box wow fadeInUp">
+                <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">特别说明</h4></a>
+                <div class="collapse">
+                  <% _.forEach(赛事勾要.特别说明, (val, key) => { %>
+                    <h5 class="title"><%= key %></h5>
+                    <p class="description">
+                      <%= val === ""? "无":val %>
+                    </p>
+                    <% }); %>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+    <!-- #gouyao -->
+
+    <!--==========================
+        赛事历史
+      ============================-->
+    <section id="history" class="section-bg">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-12">
+            <div class="section-header wow fadeIn" data-wow-duration="1s">
+              <h3 class="section-title">赛事历史</h3>
+              <span class="section-divider"></span>
+              <p class="section-description">还想了解这个赛事的前生今世？点这里就对了！</p>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 box wow fadeInUp">
+                <h4 class="title">赛事星级</h4>
+                <p class="description">
+                  <%= 赛事历史.赛事星级.赛事星级 %>
+                </p>
+              </div>
+
+              <div class="col-lg-6 col-md-6 box wow fadeInUp">
+                <h4 class="title">曾用名</h4>
+                <p class="description">
+                  <% let b=false; for(let i=1;i<=5;i++) if(赛事历史.历史继承关系['赛事曾用名'+i]){ %>
+                    <%= 赛事历史.历史继承关系['赛事曾用名'+i] + " 曾用" +  赛事历史.历史继承关系['使用届数'+i] + "届"%>
+                      <% b=true;} if(!b){ %>
+                        <%= "无" %>
+                          <% } %>
+                </p>
+              </div>
+
+              <div class="col-lg-6 col-md-6 box wow fadeInUp">
+                <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">赛事规模</h4></a>
+                <div class="collapse">
+                  <% const ava = ["赛事承办人序列","赛事承办工作人员投入","各类指导老师、评审老师的参与数",
+                  "覆盖院系数目","参赛总队伍数","赛事对象范围"];
+                  _.forEach(赛事历史.赛事规模, (val, key) => { if(ava.indexOf(key)>=0){ %>
+                    <h5 class="title"><%= key %></h5>
+                    <p class="description">
+                      <%= val === ""? "无":val %>
+                    </p>
+                    <% }}); %>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 box wow fadeInUp">
+                <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">赛事成果</h4></a>
+                <div class="collapse">
+                  <% _.forEach(赛事历史.赛事成果, (val, key) => { %>
+                    <h5 class="title"><%= key %></h5>
+                    <p class="description">
+                      <%= val === ""? "无":val %>
+                    </p>
+                    <% }); %>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <!-- #history -->
+
+  </main>
+
+  <!--==========================
       Footer
     ============================-->
-    <footer id="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            清华大学学生科协赛事部@2018
-          </div>
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          清华大学学生科协 @ 2018 <br> 联系方式：kexie@mail.tsinghua.edu.cn
         </div>
       </div>
-    </footer><!-- #footer -->
+    </div>
+    </div>
+  </footer>
+  <!-- #footer -->
 
-    <a href="#" class="back-to-top"><%= require('resource/icons/ic_keyboard_arrow_up_black_24px.svg') %></a>
+  <a href="#" class="back-to-top">
+    <%= require('resource/icons/ic_keyboard_arrow_up_black_24px.svg') %>
+  </a>
 
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <script src="https://cdn.bootcss.com/superfish/1.7.9/js/superfish.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-    <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
-    <script src="assets/style.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  <script src="https://cdn.bootcss.com/superfish/1.7.9/js/superfish.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.bootcss.com/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="assets/style.js"></script>
 
-  </body>
+</body>
+
 </html>

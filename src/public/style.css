@@ -7,14 +7,6 @@ body {
   overflow-x: hidden;
 }
 
-.body-x-en {
-  font-family: "Roboto", sans-serif;
-}
-
-.body-x-zh {
-  font-family: "Noto Sans SC X", sans-serif;
-}
-
 a {
   color: #1dc8cd;
   transition: 0.5s;
@@ -110,7 +102,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
   #logo h1 {
-    font-size: 28px;
+    font-size: 20px;
     margin-top: 0;
   }
   #logo img {
@@ -409,6 +401,11 @@ body.mobile-nav-active #mobile-nav-toggle {
 /*--------------------------------------------------------------
 # Sections
 --------------------------------------------------------------*/
+section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 /* Sections Header
 --------------------------------*/
 .section-header .section-title {
@@ -416,12 +413,11 @@ body.mobile-nav-active #mobile-nav-toggle {
   color: #111;
   text-align: center;
   font-weight: 400;
-  margin-top: 20px;
 }
 
 .section-header .section-description {
   text-align: center;
-  padding-bottom: 40px;
+  padding-bottom: 10px;
   color: #777;
   font-style: italic;
 }
