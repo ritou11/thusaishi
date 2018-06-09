@@ -15,8 +15,9 @@ let accessTokenJson;
 const getReply = (fromUser, toUser, content) => {
   let reply;
   const m = content.match(/^ss(\d+)$/);
-  if (m) {
-    const i = parseInt(m[1], 10);
+  let i = -1;
+  if (m) i = parseInt(m[1], 10);
+  if (i > 0 && i <= saishiList.length) {
     reply = [{
       Title: `${saishiList.data[`ss${i}`]} `, // TODO
       Description: '赛事详情',

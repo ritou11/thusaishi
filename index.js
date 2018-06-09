@@ -38,9 +38,5 @@ app.get('/wechat-api/menu', async (req, res) => { // 强制刷新菜单接口
   res.send();
 });
 
-app.get('/saishi', (req, res) => { // 获取赛事详情
-  res.send('Success');
-});
-
 app.listen(8000);
 console.log('Server listening on 8000......');
