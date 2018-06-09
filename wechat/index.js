@@ -280,7 +280,7 @@ class Wechat {
       switch (result.Event.toLowerCase()) {
         case 'subscribe':
         { // 回复消息
-          const content = '欢迎关注清华大学学生科协公众号，回复“赛事”可以查看赛事列表，回复“创意大赛”查看相关内容，回复其他内容获取专属滑稽[Smirk]。';
+          const content = '终于等到你！欢迎关注清华大学学生科协公众号，回复“赛事”可以查看赛事列表，回复“创意大赛、挑战杯、三创博览会、燎原实践、星火论坛”等关键词查看相关内容。';
           reportMsg = msg.txtMsg(fromUser, toUser, content);
           break;
         }
