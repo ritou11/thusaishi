@@ -14,7 +14,7 @@
   <link rel="stylesheet" as="style" href="assets/style.css">
 
   <title>
-    <%= name %>
+    <%- name %>
   </title>
 
 </head>
@@ -37,7 +37,7 @@
     <div class="container">
 
       <div id="logo" class="pull-left">
-        <h1><a href="#intro" class="scrollto"><%= name %></a></h1>
+        <h1><a href="#intro" class="scrollto"><%- name %></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#intro"><img src="resource/logo.png" alt="" title=""></a> -->
       </div>
@@ -61,19 +61,19 @@
   <section id="intro">
 
     <div class="intro-text">
-      <h2><%= 赛事定位.赛事名称.赛事全称 %></h2>
+      <h2><%- 赛事定位.赛事名称.赛事全称 %></h2>
       <p style="font-size: 18px;">
           关键词:<% let gzc=false; for(let i=1;i<=10;i++) if(赛事定位.赛事关键词['赛事内容关键词'+i]){ %>
-            <%= (gzc? ", ":"") + 赛事定位.赛事关键词['赛事内容关键词'+i] %>
+            <%- (gzc? ", ":"") + 赛事定位.赛事关键词['赛事内容关键词'+i] %>
               <% gzc=true;} if(!gzc){ %>
-                <%= "无" %>
+                <%- "无" %>
                   <% } %>
       </p>
       <p>
-        <%= 赛事定位.赛事目的.赛事目的 %>
+        <%- 赛事定位.赛事目的.赛事目的 %>
       </p>
       <p>
-        <%= 赛事定位.赛事目的.对同学们说的话 %>
+        <%- 赛事定位.赛事目的.对同学们说的话 %>
       </p>
       <table>
         <tr>
@@ -115,25 +115,25 @@
               <div class="col-lg-6 col-md-6 box wow fadeInLeft">
                 <h4 class="title">基本要求</h4>
                 <p class="description">
-                  <%= 赛事定位.参赛要求.基本要求 %>
+                  <%- 赛事定位.参赛要求.基本要求 %>
                 </p>
               </div>
               <div class="col-lg-6 col-md-6 box wow fadeInRight">
                 <h4 class="title">年级限制</h4>
                 <p class="description">
-                  <%= 赛事定位.参赛要求.年级限制 %>
+                  <%- 赛事定位.参赛要求.年级限制 %>
                 </p>
               </div>
               <div class="col-lg-6 col-md-6 box wow fadeInLeft">
                 <h4 class="title">课程要求</h4>
                 <p class="description">
-                  <%= 赛事定位.参赛要求.课程要求 %>
+                  <%- 赛事定位.参赛要求.课程要求 %>
                 </p>
               </div>
               <div class="col-lg-6 col-md-6 box wow fadeInRight">
                 <h4 class="title">参赛形式</h4>
                 <p class="description">
-                  <%= 赛事定位.赛事关键词.赛事参赛人形式 + ';' +  赛事定位.赛事关键词.赛事参赛人形式细化说明%>
+                  <%- 赛事定位.赛事关键词.赛事参赛人形式 + ';' +  赛事定位.赛事关键词.赛事参赛人形式细化说明%>
                 </p>
               </div>
 
@@ -143,13 +143,13 @@
                   <div class="col-lg-6 col-md-6 box wow fadeInUp">
                     <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">专业分组</h4></a>
                     <div class="collapse">
-                      <p class="description"><%= 赛事定位.赛事分组.专业分组 %></p>
+                      <p class="description"><%- 赛事定位.赛事分组.专业分组 %></p>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 box wow fadeInUp" data-wow-delay="0.1s">
                     <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">年级分组</h4></a>
                     <div class="collapse">
-                      <p class="description"><%= 赛事定位.赛事分组.年级分组 %></p>
+                      <p class="description"><%- 赛事定位.赛事分组.年级分组 %></p>
                     </div>
                   </div>
               </div>
@@ -185,9 +185,9 @@
                 <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">赛事流程</h4></a>
                 <div class="collapse">
                   <% _.forEach(赛事白描.赛事流程, (val, key) => { %>
-                    <h5 class="title"><%= key %></h5>
+                    <h5 class="title"><%- key %></h5>
                     <p class="description">
-                      <%= val === ""? "无":val %>
+                      <%- val === ""? "无":val %>
                     </p>
                     <% }); %>
                 </div>
@@ -196,9 +196,9 @@
                 <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">报名方法</h4></a>
                 <div class="collapse">
                   <% _.forEach(赛事白描.报名方法, (val, key) => { %>
-                    <h5 class="title"><%= key %></h5>
+                    <h5 class="title"><%- key %></h5>
                     <p class="description">
-                      <%= val === ""? "无":val %>
+                      <%- val === ""? "无":val %>
                     </p>
                     <% }); %>
                 </div>
@@ -207,9 +207,9 @@
                 <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">评价方法</h4></a>
                 <div class="collapse">
                   <% _.forEach(赛事白描.评价方法, (val, key) => { %>
-                    <h5 class="title"><%= key %></h5>
+                    <h5 class="title"><%- key %></h5>
                     <p class="description">
-                      <%= val === ""? "无":val %>
+                      <%- val === ""? "无":val %>
                     </p>
                     <% }); %>
                 </div>
@@ -218,9 +218,9 @@
                 <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">奖励方法</h4></a>
                 <div class="collapse">
                   <% _.forEach(赛事白描.奖励方法, (val, key) => { %>
-                    <h5 class="title"><%= key %></h5>
+                    <h5 class="title"><%- key %></h5>
                     <p class="description">
-                      <%= val === ""? "无":val %>
+                      <%- val === ""? "无":val %>
                     </p>
                     <% }); %>
                 </div>
@@ -261,9 +261,9 @@
                 <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">选手培训</h4></a>
                 <div class="collapse">
                   <% _.forEach(赛事勾要.选手培训说明, (val, key) => { %>
-                    <h5 class="title"><%= key %></h5>
+                    <h5 class="title"><%- key %></h5>
                     <p class="description">
-                      <%= val === ""? "无":val %>
+                      <%- val === ""? "无":val %>
                     </p>
                     <% }); %>
                 </div>
@@ -272,9 +272,9 @@
                 <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">沟通平台</h4></a>
                 <div class="collapse">
                   <% _.forEach(赛事勾要.赛事沟通平台, (val, key) => { %>
-                    <h5 class="title"><%= key %></h5>
+                    <h5 class="title"><%- key %></h5>
                     <p class="description">
-                      <%= val === ""? "无":val %>
+                      <%- val === ""? "无":val %>
                     </p>
                     <% }); %>
                 </div>
@@ -283,9 +283,9 @@
                 <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">特别说明</h4></a>
                 <div class="collapse">
                   <% _.forEach(赛事勾要.特别说明, (val, key) => { %>
-                    <h5 class="title"><%= key %></h5>
+                    <h5 class="title"><%- key %></h5>
                     <p class="description">
-                      <%= val === ""? "无":val %>
+                      <%- val === ""? "无":val %>
                     </p>
                     <% }); %>
                 </div>
@@ -325,7 +325,7 @@
               <div class="col-lg-6 col-md-6 box wow fadeInUp">
                 <h4 class="title">赛事星级</h4>
                 <p class="description">
-                  <%= 赛事历史.赛事星级.赛事星级 %>
+                  <%- 赛事历史.赛事星级.赛事星级 %>
                 </p>
               </div>
 
@@ -333,9 +333,9 @@
                 <h4 class="title">曾用名</h4>
                 <p class="description">
                   <% let b=false; for(let i=1;i<=5;i++) if(赛事历史.历史继承关系['赛事曾用名'+i]){ %>
-                    <%= 赛事历史.历史继承关系['赛事曾用名'+i] + " 曾用" +  赛事历史.历史继承关系['使用届数'+i] + "届"%>
+                    <%- 赛事历史.历史继承关系['赛事曾用名'+i] + " 曾用" +  赛事历史.历史继承关系['使用届数'+i] + "届"%>
                       <% b=true;} if(!b){ %>
-                        <%= "无" %>
+                        <%- "无" %>
                           <% } %>
                 </p>
               </div>
@@ -346,9 +346,9 @@
                   <% const ava = ["赛事承办人序列","赛事承办工作人员投入","各类指导老师、评审老师的参与数",
                   "覆盖院系数目","参赛总队伍数","赛事对象范围"];
                   _.forEach(赛事历史.赛事规模, (val, key) => { if(ava.indexOf(key)>=0){ %>
-                    <h5 class="title"><%= key %></h5>
+                    <h5 class="title"><%- key %></h5>
                     <p class="description">
-                      <%= val === ""? "无":val %>
+                      <%- val === ""? "无":val %>
                     </p>
                     <% }}); %>
                 </div>
@@ -358,9 +358,9 @@
                 <a data-toggle="collapse" class="collapsed" color="#000000"><h4 class="title">赛事成果</h4></a>
                 <div class="collapse">
                   <% _.forEach(赛事历史.赛事成果, (val, key) => { %>
-                    <h5 class="title"><%= key %></h5>
+                    <h5 class="title"><%- key %></h5>
                     <p class="description">
-                      <%= val === ""? "无":val %>
+                      <%- val === ""? "无":val %>
                     </p>
                     <% }); %>
                 </div>
