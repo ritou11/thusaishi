@@ -10,7 +10,7 @@ const saishiList = require('../contest_list.json');
 // const writeFile = util.promisify(fs.writeFile);
 let accessTokenJson;
 
-const getTime = () => new Date().toISOString();
+// const getTime = () => new Date().toISOString();
 
 const getReply = (fromUser, toUser, content) => {
   let reply;
@@ -155,7 +155,7 @@ const getReply = (fromUser, toUser, content) => {
       default: // 默认回复：滑稽*random()
         // var defaultMsg=['[Smirk]']
         // reportMsg = msg.txtMsg(fromUser,toUser,defaultMsg[Math.floor(Math.random()*defaultMsg.length)]);
-        reply = '科小协现在还听不懂你在说什么[Shy]\n感谢关注清华大学学生科协，我们会继续加油哒~';
+        reply = '科小协现在还听不懂你在说什么[Shy]\n感谢关注清华大学学生科协，我们会继续加油哒~\n回复“赛事”可以查看赛事列表，回复“创意大赛、挑战杯、三创博览会、燎原实践、星火论坛、新生专场、学生学报”等关键词查看相关内容。';
         break;
     }
   }
@@ -274,7 +274,7 @@ class Wechat {
     let reportMsg; // 声明回复消息的变量
 
     // 判断消息类型
-    console.log(`${getTime()}\nMsg[${result.MsgType}${result.Event ? `.${result.Event}` : ''}]\tfrom ${fromUser}\t->${result.Content}`);
+    // console.log(`${getTime()}\nMsg[${result.MsgType}${result.Event ? `.${result.Event}` : ''}]\tfrom ${fromUser}\t->${result.Content}`);
     if (result.MsgType.toLowerCase() === 'event') {
       // 判断事件类型
       switch (result.Event.toLowerCase()) {
@@ -317,14 +317,14 @@ class Wechat {
 
     reportMsg = req.query.encrypt_type === 'aes' ? cryptoGraphy.encryptMsg(reportMsg) : reportMsg;
     res.send(reportMsg);
-    console.log('-Replied.');
+    // console.log('-Replied.');
   }
 
   async setMenu() {
     const url = util.format(this.apiURL.createMenu, accessTokenJson.access_token);
     // 使用 Post 请求创建微信菜单
     const { data } = await axios({ url, method: 'post', data: menus, baseURL: this.apiDomain });
-    console.log('setMenu: ', data);
+    // console.log('setMenu: ', data);
   }
 }
 
