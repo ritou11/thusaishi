@@ -163,23 +163,23 @@ const getReply = (fromUser, toUser, content) => {
   if (typeof reply !== 'string') {
     return msg.graphicMsg(fromUser, toUser, reply);
   }
-  const max_len = 800;
-  if (reply.length > max_len) {
+  const maxLen = 800;
+  if (reply.length > maxLen) {
     const arr = reply.split('\n');
-    let arr_ = [],
-      arr__ = [];
-    for (let i = 0; i < arr.length; i++) {
-      for (let j = 0; j < arr[i].length / max_len; i++) {
-        arr_.push(arr[i].slice(j * max_len, (j + 1) * max_len));
+    const arr_ = [];
+    const arr__ = [];
+    for (let k = 0; k < arr.length; k += 1) {
+      for (let j = 0; j < arr[k].length / maxLen; j += 1) {
+        arr_.push(arr[k].slice(j * maxLen, (j + 1) * maxLen));
       }
     }
     let msg_ = arr_[0];
-    for (let i = 1; i < arr_.length; i++) {
-      if (msg_.length + arr_[i].length <= max_len) {
-        msg_ += `\n${arr_[i]}`;
+    for (let k = 1; k < arr_.length; k += 1) {
+      if (msg_.length + arr_[k].length <= maxLen) {
+        msg_ += `\n${arr_[k]}`;
       } else {
         arr__.push(msg_);
-        msg_ = arr_[i];
+        msg_ = arr_[k];
       }
     }
     arr__.push(msg_);
