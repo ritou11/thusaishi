@@ -12,7 +12,7 @@
     "dependencies": {
         "axios": "^0.18.0",
         "body-parser": "^1.18.3",
-        "body-parser-xml": "^1.1.0",
+        "body-parser-xml": "^2.0.3",
         "crypto": "^1.0.1",
         "express": "^4.16.3",
         "fs": "^0.0.1-security",
